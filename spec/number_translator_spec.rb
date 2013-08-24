@@ -114,5 +114,42 @@ describe "NumberTranslator" do
         expect(translation).to eq("fifty-four thousand three hundred twenty-one")
       end
     end
+
+    context "millions" do
+      before do
+        @translator = NumberTranslator.new
+      end
+
+      it "correctly translates 7 digit numbers" do
+        number = 7654321
+        translation = @translator.translate(number)
+        expect(translation).to eq("seven million six hundred fifty-four thousand three hundred twenty-one")
+      end
+
+      it "correctly translates 8 digit numbers" do
+        number = 87654321
+        translation = @translator.translate(number)
+        expect(translation).to eq("eighty-seven million six hundred fifty-four thousand three hundred twenty-one")
+      end
+
+      it "correctly translates 9 digit numbers" do
+        number = 987654321
+        translation = @translator.translate(number)
+        expect(translation).to eq("nine hundred eighty-seven million six hundred fifty-four thousand three hundred twenty-one")
+      end
+
+      it "can translate a number with leading zeros" do
+        # leading zeros cause funkiness in number interpretation
+        number = "07654321".to_i
+        translation = @translator.translate(number)
+        expect(translation).to eq("seven million six hundred fifty-four thousand three hundred twenty-one")
+      end
+
+      it "can translate a multiple of 1000000" do
+        number = 1000000
+        translation = @translator.translate(number)
+        expect(translation).to eq("one million")
+      end
+    end
   end
 end
