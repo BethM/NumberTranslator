@@ -5,7 +5,7 @@ require 'number_translator'
 describe "NumberTranslator" do
   describe "translate" do
 
-    context "single digits" do
+    context "one digit" do
       before do
         @number = 1
         @translator = NumberTranslator.new
@@ -16,8 +16,32 @@ describe "NumberTranslator" do
         expect(@translation).to be_a(String)
       end
 
-      it "correctly translate a single digit number" do
+      it "correctly translates a single digit number" do
         expect(@translation).to eq("one")
+      end
+    end
+
+    context "two digits" do
+      before do
+        @translator = NumberTranslator.new
+      end
+
+      it "correctly translates a teen number" do
+        number = 13
+        translation = @translator.translate(number)
+        expect(translation).to eq("thirteen")
+      end
+
+      it "correctly translates a number ending in 0" do
+        number = 40
+        translation = @translator.translate(number)
+        expect(translation).to eq("forty")
+      end
+
+      it "correctly translates double digit numbers > 19" do
+        number = 25
+        translation = @translator.translate(number)
+        expect(translation).to eq("twenty-five")
       end
     end
   end
