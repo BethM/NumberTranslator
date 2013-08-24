@@ -1,0 +1,8 @@
+Number Translator
+
+Beth Medina
+medina.beth@gmail.com
+8/24/13
+
+
+This application runs from the command line with a numeric argument supplied by the user. At this time the applicatio does not support text, commas, decimals or negative numbers. It also will only work for numbers less than ten digits long.
