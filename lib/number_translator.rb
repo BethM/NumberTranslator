@@ -1,22 +1,28 @@
+require 'debugger'
 class NumberTranslator
-
   def translate(number)
+    error_message = "This application currently can only process numbers with fewer than 10 digits. It also does not yet handle text, commas, negative numbers or decimals. Please try again."
+    if number == "0"
+      "zero"
+    else
+      return error_message if number.to_i == 0 || number.include?(",") || number.include?("-") || number.include?(".")
+    end
+
     number_string = number.to_s
     number_of_digits = number_string.length
 
     case number_of_digits
     when 1
       one_digit(number_string)
-    when 2
+      when 2
       two_digits(number_string)
-    when 3
+      when 3
       three_digits(number_string)
-    when 4, 5, 6
+      when 4, 5, 6
       thousands(number_string)
-    when 7, 8, 9
+      when 7, 8, 9
       millions(number_string)
-    else
-      "This application currently can only process numbers with fewer than 10 digits."
+      else
     end
   end
 
@@ -57,7 +63,7 @@ class NumberTranslator
     the_rest = two_digits(numbers[1..-1])
     if numbers[0] == "0"
       two_digits(numbers[1..-1])
-    elsif numbers[1] && numbers[2] == "0"
+    elsif numbers[1] == 0 && numbers[2] == "0"
       "#{hundreds} hundred"
     else
       "#{hundreds} hundred #{the_rest}"
