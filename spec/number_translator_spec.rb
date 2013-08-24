@@ -83,5 +83,36 @@ describe "NumberTranslator" do
         expect(translation).to eq("thirty-three")
       end
     end
+
+    context "thousands" do
+      before do
+        @translator = NumberTranslator.new
+      end
+
+      it "correctly translates 4 digit numbers" do
+        four_digits = 4321
+        translation = @translator.translate(four_digits)
+        expect(translation).to eq("four thousand three hundred twenty-one")
+      end
+
+      it "correctly translates 5 digit numbers" do
+        five_digits = 54321
+        translation = @translator.translate(five_digits)
+        expect(translation).to eq("fifty-four thousand three hundred twenty-one")
+      end
+
+      it "correctly translates six digit numbers" do
+        six_digits = 654321
+        translation = @translator.translate(six_digits)
+        expect(translation).to eq("six hundred fifty-four thousand three hundred twenty-one")
+      end
+
+      it "can translate a number with leading zeros" do
+        # leading zeros cause funkiness in number interpretation
+        number = "054321".to_i
+        translation = @translator.translate(number)
+        expect(translation).to eq("fifty-four thousand three hundred twenty-one")
+      end
+    end
   end
 end
