@@ -5,9 +5,15 @@ medina.beth@gmail.com
 8/24/13
 
 
+Please clone the code then run then run
+
+    lib/number_translator.rb *your-number-here*
+    
+from the command line.
+
 This application runs from the command line with a numeric argument
 supplied by the user. At this time the application does not support
-text, commas, decimals or negative numbers. It also will only work for
+text, decimals or negative numbers. It also will only work for
 numbers less than ten digits long.
 
 I realize the spec file desperately needs to be DRYed up. Also I need
