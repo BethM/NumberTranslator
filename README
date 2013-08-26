@@ -6,6 +6,12 @@ medina.beth@gmail.com
 
 
 This application runs from the command line with a numeric argument
-supplied by the user. At this time the applicatio does not support
+supplied by the user. At this time the application does not support
 text, commas, decimals or negative numbers. It also will only work for
 numbers less than ten digits long.
+
+I realize the spec file desperately needs to be DRYed up. Also I need
+to write specs that test that the proper error message for incorrect
+input displays when something other than an integer is input. I would
+like to handle these cases better rather than just displaying a message,
+and hope to do that in the future.
