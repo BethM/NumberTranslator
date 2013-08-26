@@ -1,13 +1,14 @@
+#!/usr/bin/env ruby
 class NumberTranslator
   def translate(number)
-    error_message = "This application currently can only process numbers with fewer than 10 digits. It also does not yet handle text, commas, negative numbers or decimals. Please try again."
+    error_message = "This application currently can only process numbers with fewer than 10 digits. It also does not yet handle text, negative numbers or decimals. Please try again."
     if number == "0"
       "zero"
     else
       return error_message if number.to_i == 0 || number.to_s.include?(",") || number.to_s.include?("-") || number.to_s.include?(".")
     end
 
-    number_string = number.to_s
+    number_string = number.to_s.gsub(",", "")
     number_of_digits = number_string.length
 
     case number_of_digits
